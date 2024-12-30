@@ -9,7 +9,7 @@ phases:
   install:
     commands:
       - echo 'Installing Python dependencies'
-      - sudo yum install python3 python3-pip
+      - sudo yum install -y python3 python3-pip
       - pip install django
   pre_build:
     commands:
