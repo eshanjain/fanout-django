@@ -20,7 +20,7 @@ phases:
   build:
     commands:
       - echo 'Running Django Tests'
-      - codebuild-tests-run --test-command 'python3 manage.py test calculator' --files-search "codebuild-glob-search '**/tests/*test_*.py'" --sharding-strategy 'equal-distribution'
+      - codebuild-tests-run --test-command 'python3 manage.py test calculator $(echo "$CODEBUILD_CURRENT_SHARD_FILES" | sed -E "s/\//__/g; s/\.py$//; s/__/./g")' --files-search "codebuild-glob-search '**/tests/*test_*.py'" --sharding-strategy 'equal-distribution'
   post_build:
     commands:
       - echo "Would deploy here"
